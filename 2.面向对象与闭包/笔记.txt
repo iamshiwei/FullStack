@@ -1,0 +1,75 @@
+ES6
+兼容性
+    babel
+       1.在线: babeljs.io
+            引入
+            type="text/babel"
+
+       2.编译
+        nodejs
+
+            npm i @babel/core @babel/cli @babel/preset-env -D
+            添加脚本
+            添加.babelrc---声明
+es6(es2015)
+es7(es2016)
+    **-----求幂  Math.pow
+    Arrar.includes()
+es8(es2017)
+    async/await
+es9(es2018)
+    rest/spread
+    异步迭代
+    正则表达
+----------------------------------------------------------------------------------------------------
+
+面向对象
+    机器语言=>汇编语言=>低级语言(面向过程)=>高级语言(面向对象)=>模块=>框架=>api
+    1.封装性  Date
+    2.继承性
+    3.多态性
+    class
+    constructor
+    super
+    extends
+    class xxx extends xxx{
+        constructor(){
+            super()
+        }
+        xxx(){
+
+        }
+    }
+闭包
+    垃圾回收
+    1.底层:栈
+    2.高层:函数当做对象
+    闭包----留着别删
+es6的模块化
+    1.浏览器暂时还不支持
+    2.webpack
+        安装:npm i webpack -g
+        编译
+            1.entry: 入口地址
+            2.output: 输出
+                path: 绝对路径
+                filename: 文件名称
+            3.mode: 模式
+            4.所有当前路径需加./
+----------------------------------------------------------------------------------------------------
+export
+    export let a= 12;
+    export const b = 23;
+    export {}
+    export default
+import
+    import * as xxx from '';
+    import {a,b,c} from '';
+
+    // 专门引入默认值
+    import xxx from ''
+
+    // 模块的代码引进来,不引入内部变量
+    import './1.css'
+    import './1.jpg'
+

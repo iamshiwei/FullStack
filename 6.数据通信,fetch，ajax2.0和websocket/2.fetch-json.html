@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="读取" id="btn">
+<script>
+    window.onload = function () {
+        let btn = document.getElementById('btn');
+        btn.onclick = async function () {
+            // 请求数据
+            let res = await fetch('data/1.json');
+            // 解析数据
+            let data = await res.json();
+            console.log(data);
+        }
+    }
+</script>
+</body>
+</html>

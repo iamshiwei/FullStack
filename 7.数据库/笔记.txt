@@ -1,0 +1,11 @@
+数据库
+   1.分类
+        文件型: 简单 access/sqlite
+        关系型: MySQL/Oracle
+        分布式: MongoDB/
+        NoSQL: Redis
+   2.安全性
+      注入
+   3.操作
+      管理性
+      增删改查

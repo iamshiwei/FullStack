@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form id="form1" action="http://localhost:8888" method="post">
+    user:  <input type="text" name="user"><br>
+    pass:  <input type="password" name="pass"><br>
+    file: <input type="file" name="file">
+    <input type="submit" value="提交">
+</form>
+<script src="./jquery.min.js"></script>
+<script>
+    $('#form1').on('submit', function(){
+        let formData = new FormData(this);
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: formData,
+            processData: false,
+            contentType: false,
+        }).then((res)=>{
+            console.log('succ')
+        }, err=>{
+            console.log(err);
+        })
+        return false;
+    })
+</script>
+</body>
+</html>

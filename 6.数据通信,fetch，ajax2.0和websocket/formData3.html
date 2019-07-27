@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="form1" action="http://localhost:8888">
+    user:  <input type="text" id="user"><br>
+    pass:  <input type="password" id="pass"><br>
+    file: <input type="file" id="f1">
+    <input type="button" value="提交" id="btn1">
+</div>
+<script>
+   let oBtn = document.querySelector('#btn1');
+   oBtn.onclick = function(){
+    let formData = new FormData();
+    formData.append('username', document.querySelector('#user').value);
+    formData.append('password', document.querySelector('#pass').value);
+    formData.append('file', document.querySelector('#f1').files[0]);
+    let xhr = new XMLHttpRequest();
+        xhr.open('post', 'http://localhost:8888', true);
+        xhr.send(formData);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xtr.status == 200) {
+                    alert("succ");
+                } else {
+                    alert('fail');
+                }
+            }
+        };
+   }
+</script>
+</body>
+</html>

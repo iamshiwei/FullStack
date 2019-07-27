@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            var btn = document.getElementById('btn1');
+            btn.onclick = function () {
+                var ajax = new XMLHttpRequest();
+                ajax.open('GET', 'http://localhost:8888/a', true);
+                ajax.send();
+                ajax.onreadystatechange = function () {
+                    // 0-4
+                    if(ajax.readyState == 4){
+                        if(ajax.status >= 200 && ajax.status<300 || ajax.status == 304){
+                            alert("成功");
+                            alert(ajax.responseText);
+                        } else  {
+                            alert("失败");
+
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="请求" id="btn1">
+</body>
+</html>

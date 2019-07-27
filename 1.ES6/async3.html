@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+<script>
+    let show = async ()=>{
+       let data1 = await $.ajax({url: 'data/1.json', dataType: 'json'});
+       if(data1.a < 10) {
+           let data2 = await $.ajax({url: 'data/2.json', dataType: 'json'});
+           console.log("a")
+       } else {
+           let data3 = await $.ajax({url: 'data/3.json', dataType: 'json'})
+           console.log("b");
+       }
+        console.log(data1, data2, data3)
+    }
+    show()
+</script>
+</body>
+</html>
