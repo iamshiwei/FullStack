@@ -4,7 +4,8 @@ const url = require('url');
 const fs = require('fs');
 
 // 1.连接到服务器
-let db = mysql.createConnection({
+let db = mysql.createPool({
+    connectionLimit: 10,
     host: 'localhost',
     user: 'root',
     password: 'shiwei19910513',
