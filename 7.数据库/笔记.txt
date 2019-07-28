@@ -9,3 +9,24 @@
    3.操作
       管理性
       增删改查
+--------------------------------------------
+库
+表
+--------------------------------------------
+类型
+   文本
+      varchar-短
+      text --长  2G
+主键
+   1.不重复
+   2.性能最高
+SQL语句
+   增
+      INSERT INTO <表>(字段1, 字段3,...) VALUES (值1, 值2, ...)
+      INSERT INTO user_table(user,name) VALUES ('lixiaoshuang', '111111')
+   删
+      DELETE FROM <表> WHERE 条件
+   改
+      UPDATE
+   查
+      SELECT
