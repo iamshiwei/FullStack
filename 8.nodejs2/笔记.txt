@@ -1,0 +1,14 @@
+流操作
+    fs.readFile('www/1.html', (err, buffer)={
+        res.write(buffer);
+    })
+
+    1、占用内存
+    2、资源使用不均匀
+启动器
+    forever 
+        npm i forever -g
+        forever start xxx.js
+        forever restart xxx.js
+        forever stop xxx.js
+        forever stopall
