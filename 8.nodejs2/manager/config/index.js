@@ -1,8 +1,7 @@
-const process=require('process');
+const process = require('process');
+let mode = "dev";
+module.exports = {
+    mode,
+    ...(mode == 'dev' ? require('./config.dev') : require('./config.prod')),
 
-let mode=(process.env.OS=='Windows_NT'?'dev':'prod');
-
-module.exports={
-  mode,
-  ...(mode=='dev'?require('./config.dev'):require('./config.prod'))
-};
+}
