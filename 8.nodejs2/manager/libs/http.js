@@ -8,6 +8,10 @@ const zlib = require('zlib');
 const router = require('../libs/router');
 const {HTTP_PORT, HTTP_ROOT, HTTP_UPLOAD} = require('../config');
 http.createServer((req, res) => {
+    res.writeJson = function(json){
+        res.setHeader('content-type', 'application/json');
+        res.write(JSON.stringify(json));
+    }
     let {pathname, query} = url.parse(req.url, true);
     // 1.解析数据
     if (req.method == 'POST') {
@@ -46,14 +50,14 @@ http.createServer((req, res) => {
         }
     } else {
         // 找路由
-        handle(req.method, pathname, {}, {})
+        handle(req.method, pathname, query,{}, {})
     }
 
-    function handle(method, url, get, post, files) {
+    async function handle(method, url, get, post, files) {
         let fn = router.findRouter(method, url);
         if(!fn) {
             // 文件
-            let filepath = HTTP_UPLOAD+pathname;
+            let filepath = HTTP_ROOT+pathname;
             fs.stat(filepath, (err, stat)=>{
                 if(err){
                     res.writeHead(404);
@@ -69,6 +73,13 @@ http.createServer((req, res) => {
             })
         } else {
             // 接口
+            try{
+                await fn(res, get,post, files)
+            }catch(err){
+                res.writeHead(500);
+                res.write('Internal Server Error');
+                res.end ();
+            }
         }
     }
 }).listen(HTTP_PORT);
