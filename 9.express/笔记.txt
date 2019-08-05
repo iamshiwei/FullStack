@@ -16,4 +16,9 @@ use(fn)
     post -----body-parser
     file: multer
 cookie
-    
+    存储在浏览器，请求服务器的时候，会顺便发给服务器
+    不安全
+    不跨域
+session：存储在服务器，不是独立的，基于cookie
+    安全问题： session劫持
+    token: 存储在cookie里面的sessionId
