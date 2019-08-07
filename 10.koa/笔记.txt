@@ -17,3 +17,11 @@ all
 路由
     嵌套
     参数
+------------------------------------------------------------------------------------------
+ctx.method   请求方法
+ctx.url
+ctx.path
+ctx.query   get数据
+ctx.ip   客户端的ip
+ctx.headers  请求头
+ctx.throw(code, msg);
