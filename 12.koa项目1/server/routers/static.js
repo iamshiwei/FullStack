@@ -9,17 +9,17 @@ module.exports = function (router, options) {
   // 设置静态文件缓存时间
   router.all(/(\.jpg)|(\.png)|(\.gif)$/i, static('./static', {
     maxage: options.image * 86400 * 1000
-  }))
+  }));
   router.all(/(\.js)|(\.jsx)$/i, static('./static', {
     maxage: options.script * 86400 * 1000
-  }))
+  }));
   router.all(/(\.html)|(\.htm)$/i, static('./static', {
     maxage: options.html * 86400 * 1000
-  }))
+  }));
   router.all(/(\.css)$/i, static('./static', {
     maxage: options.style * 86400 * 1000
-  }))
+  }));
   router.all('*', static('./static', {
     maxage: options.other * 86400 * 1000
   }))
-}
+};
