@@ -5,7 +5,7 @@ let router = new Router();
 
 // 返回登录页面
 router.get('/login', async ctx => {
-    await ctx.render('admin/login')
+    await ctx.render('admin/login');
 });
 router.post('/login', async ctx => {
     let { user, pass } = ctx.request.fields;

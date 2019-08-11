@@ -38,17 +38,24 @@ router.post('/login', async ctx => {
     }
 });
 // 鉴别管理元权限的代码必须放在登录路由的下面，否则登录也会被拦截
-router.all('*', async (ctx, next)=>{
-    let {HTTP_ROOT} = ctx.config;
-    if(!ctx.session['admin']){
+router.all('*', async (ctx, next) => {
+    let { HTTP_ROOT } = ctx.config;
+    if (!ctx.session['admin']) {
         ctx.redirect(`${HTTP_ROOT}/admin/login`)
     } else {
         await next();
     }
 })
-router.get('/banner', async ctx=>{
-    ctx.body = 'banner';
-    
-} )
+router.get('/', async ctx => {
+    const { HTTP_ROOT } = ctx.config;
+    ctx.redirect(`${HTTP_ROOT}/admin/banner`);
+})
+router.get('/banner', async ctx => {
+    const table = 'banner_table'
+    let datas = await ctx.db.query(`SELECT * FROM ${table}`);
+    await ctx.render('admin/table', {
+        datas
+    })
+})
 
 module.exports = router.routes();
