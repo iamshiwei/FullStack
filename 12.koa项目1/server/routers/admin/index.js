@@ -56,7 +56,13 @@ router.get('/banner', async ctx => {
     let datas = await ctx.db.query(`SELECT * FROM ${table}`);
     await ctx.render('admin/table', {
         HTTP_ROOT,
-        datas
+        datas,
+        fields: [
+            {title: "标题", name: 'title', type: 'text'},
+            {title: "图片", name: 'src', type: 'file'},
+            {title: "地址", name: 'href', type: 'text'},
+            {title: "序号", name: 'serial', type: 'number'},
+        ]
     })
 })
 
