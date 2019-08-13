@@ -51,9 +51,11 @@ router.get('/', async ctx => {
     ctx.redirect(`${HTTP_ROOT}/admin/banner`);
 })
 router.get('/banner', async ctx => {
-    const table = 'banner_table'
+    const table = 'banner_table';
+    const {HTTP_ROOT} = ctx.config;
     let datas = await ctx.db.query(`SELECT * FROM ${table}`);
     await ctx.render('admin/table', {
+        HTTP_ROOT,
         datas
     })
 })
