@@ -12,8 +12,8 @@ router.get('/login', async ctx => {
     })
 });
 router.post('/login', async ctx => {
-    const { HTTP_ROOT } = ctx.config;
-    let { username, password } = ctx.request.fields;
+    const {HTTP_ROOT} = ctx.config;
+    let {username, password} = ctx.request.fields;
     let admins = JSON.parse((await afs.readFile(path.resolve(__dirname, '../../admins.json'))).toString());
 
     function findAdmin(username) {
@@ -22,9 +22,10 @@ router.post('/login', async ctx => {
             if (admin.username == username) {
                 a = admin;
             }
-        })
+        });
         return a;
     }
+
     let admin = findAdmin(username);
 
     if (!admin) {
@@ -39,7 +40,7 @@ router.post('/login', async ctx => {
 });
 // 鉴别管理元权限的代码必须放在登录路由的下面，否则登录也会被拦截
 router.all('*', async (ctx, next) => {
-    let { HTTP_ROOT } = ctx.config;
+    let {HTTP_ROOT} = ctx.config;
     if (!ctx.session['admin']) {
         ctx.redirect(`${HTTP_ROOT}/admin/login`)
     } else {
@@ -47,7 +48,7 @@ router.all('*', async (ctx, next) => {
     }
 })
 router.get('/', async ctx => {
-    const { HTTP_ROOT } = ctx.config;
+    const {HTTP_ROOT} = ctx.config;
     ctx.redirect(`${HTTP_ROOT}/admin/banner`);
 })
 router.get('/banner', async ctx => {
@@ -57,6 +58,7 @@ router.get('/banner', async ctx => {
     await ctx.render('admin/table', {
         HTTP_ROOT,
         datas,
+        action: `${HTTP_ROOT}/admin/banner`,
         fields: [
             {title: "标题", name: 'title', type: 'text'},
             {title: "图片", name: 'src', type: 'file'},
@@ -64,6 +66,14 @@ router.get('/banner', async ctx => {
             {title: "序号", name: 'serial', type: 'number'},
         ]
     })
+})
+router.post('/banner', async ctx => {
+    let {HTTP_ROOT}  = ctx.config;
+    let {title, src, href, serial} = ctx.request.fields;
+    src = path.basename(src[0].path);
+    console.log(title, src, href, serial);
+    await ctx.db.query('INSERT INTO banner_table (title, src, href, serial) VALUES (?,?,?,?)', [title, src, href, serial]);
+    ctx.redirect(`${HTTP_ROOT}/admin/banner`);
 })
 
 module.exports = router.routes();
