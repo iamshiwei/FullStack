@@ -14,7 +14,7 @@ console.log(`Server Runing at ${config.PORT}`);
 
 // 中间件
 app.use(body({
-    uploadDir: path.resolve(__dirname, './static/upload')
+    uploadDir: config.UPLOAD_DIR
 }));
 ejs(app, {
     root: path.resolve(__dirname, 'template'),
