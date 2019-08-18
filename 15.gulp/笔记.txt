@@ -1,3 +1,4 @@
 gulp-uglify
 gulp-concat
-gulp-rename 
+gulp-rename
+gulp-sourcrmaps
