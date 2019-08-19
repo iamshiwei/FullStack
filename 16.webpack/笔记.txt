@@ -15,5 +15,9 @@ module.exports = {
 单入口、多入口
 ----------------------------------------------------------------------------------------
 loader--帮助webpack处理除js以外的文件
+    css-loaedr: 使webpack认识css文件
+    style-loader: 使css文件变为style标签      使用loader时和顺序有关系 先使用的放在后面
+    postcss-loader 
+    file-loader
 
 
